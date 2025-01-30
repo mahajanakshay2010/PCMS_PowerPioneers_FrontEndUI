@@ -1,0 +1,29 @@
+.btn {
+    border-radius: 50 !important;
+    padding: 0.4rem 1.3rem;
+    font-size: 1rem;
+    margin-left: 99px;
+}
+
+.head-color {
+    color: #4caf50;
+}
+
+.btn-success {
+    background-color: #4caf50 !important;
+    color: white !important;
+    border-color: #4caf50 !important;
+    margin-top: 10px;
+}
+
+.text-success {
+    padding-left: 30px;
+}
+
+.bottom {
+    margin-bottom: 50px;
+}
+
+.d-flex {
+    display: flex;
+}

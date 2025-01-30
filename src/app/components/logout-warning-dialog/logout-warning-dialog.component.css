@@ -1,0 +1,51 @@
+.warning-card {
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 16px;
+  }
+  
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color:#4caf50;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-content {
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .proceed-button, .cancel-button{
+    background-color: white;
+    color: #4caf50 !important;
+    border: 2px solid #4caf50;
+    margin-left: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+  }
+  .proceed-button:hover, .cancel-button:hover {
+    background-color: #4caf50;
+    color: white !important;
+  }
+  
+  .error-icon {
+    color: white;
+    background-color: #4caf50;
+    border-radius: 60%;
+    
+  }
+  

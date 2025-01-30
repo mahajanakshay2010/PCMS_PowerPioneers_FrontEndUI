@@ -1,0 +1,12 @@
+.nav-item{
+  margin: 0 120px;
+}
+ 
+.nav-link {
+  position: relative;
+}
+
+.active{
+  border-bottom: 2px solid #006400;
+}
+ 

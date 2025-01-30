@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Edit Plan</h2>
+<mat-dialog-content>
+  <form [formGroup]="planForm" class="container">
+    <div class="row">
+      <div class="col-md-12 mb-3 form-group">
+        <input
+          type="text"
+          id="location"
+          class="form-control form-control-lg"
+          formControlName="location"
+          placeholder=" "
+          required
+        />
+        <label for="location" class="form-label">Location</label>
+        <button type="button" class="clear-button" *ngIf="planForm.get('location')!.value" (click)="clearField('location')">✕</button>
+        <div class="form-text text-danger" *ngIf="planForm.get('location')!.hasError('required') && planForm.get('location')!.touched">
+          Location is required.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-3 form-group">
+        <input
+          type="text"
+          id="planName"
+          class="form-control form-control-lg"
+          formControlName="planName"
+          placeholder=" "
+          required
+        />
+        <label for="planName" class="form-label">Plan Name</label>
+        <button type="button" class="clear-button" *ngIf="planForm.get('planName')!.value" (click)="clearField('planName')">✕</button>
+        <div class="form-text text-danger" *ngIf="planForm.get('planName')!.hasError('required') && planForm.get('planName')!.touched">
+          Plan name is required.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-3 form-group">
+        <input
+          type="number"
+          id="price"
+          class="form-control form-control-lg"
+          formControlName="price"
+          placeholder=" "
+          required
+        />
+        <label for="price" class="form-label">Price</label>
+        <button type="button" class="clear-button" *ngIf="planForm.get('price')!.value" (click)="clearField('price')">✕</button>
+        <div class="form-text text-danger" *ngIf="planForm.get('price')!.hasError('required') && planForm.get('price')!.touched">
+          Price is required.
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="action-buttons">
+  <button mat-button class="save-button" (click)="onSave()">Save</button>
+  <button mat-button class="cancel-button" (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

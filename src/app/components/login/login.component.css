@@ -1,0 +1,155 @@
+/* Background styling */
+.background {
+  display: flex;
+  height: 100vh;
+  background-image: url('../../assets/power.jpg');
+  /* Update with your image path */
+  background-size: cover;
+  background-position: left;
+}
+
+.gap{
+  margin-bottom: 10px;
+}
+
+/* Container to center the form */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 35%;
+  /* Adjust this value to set the desired margin */
+}
+
+/* Login form styling */
+.login-form {
+  width: 500px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Form input styling */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 18px 10px 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #6a1b9a;
+  box-shadow: 0 0 5px rgba(106, 27, 154, 0.3);
+}
+
+/* Floating label styling */
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: #aaa;
+  font-size: 16px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.form-group input:focus+label,
+.form-group input:not(:placeholder-shown)+label {
+  top: -10px;
+  font-size: 12px;
+  color: #6a1b9a;
+  background-color: white;
+  padding: 0 5px;
+}
+
+/* Button styling */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-outline-success {
+  background-color: transparent;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Footer styling */
+.footer {
+  font-size: 14px;
+  color: rgb(231, 213, 213);
+  width: 100%;
+}
+
+/* Popup overlay and message styling */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-message {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-message p {
+  font-size: 18px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.popup-message .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.popup-message .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.fa-icon {
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,93 @@
+.background {
+  display: flex;
+  height: 90vh;
+  background-image: url('../../assets/power.jpg'); /* Update with your image path */
+  background-size: cover;
+  background-position: left;
+  text-align: center;
+}
+.left-align {
+  margin-left: -15px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin-left: 35%; /* Adjust width as needed */
+}
+
+.parent {
+  margin-bottom: 10px;
+}
+
+.text-center {
+  align-self: flex-end;
+  margin: 0;
+}
+
+.gap{
+  margin-bottom: 10px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: right;
+  /* align-items: center; */
+  flex-grow: 1;
+  margin-right: 0; /* Remove margin to center the form */
+}
+
+.registration-form {
+  width: 60%; /* Increase width to cover more space */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.form-text {
+  font-size: 12px;
+  color: red;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-outline-success {
+  background-color: transparent;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.m3 {
+  margin-top: 20px;
+}

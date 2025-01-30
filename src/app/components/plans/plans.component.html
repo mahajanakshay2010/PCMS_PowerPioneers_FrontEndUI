@@ -1,0 +1,66 @@
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner class="custom-spinner"></mat-spinner>
+</div>
+
+<div class="container mt-4">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <label for="inputSearch" class="form-label">Location</label>
+      <div class="input-group">
+        <span class="input-group-text custom-icon">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text" id="inputSearch" class="form-control input-lg custom-field" [(ngModel)]="searchText"
+          (input)="filterPlans()" placeholder="Search" />
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="selectPlan" class="form-label">Plan</label>
+      <select id="selectPlan" class="form-select" [(ngModel)]="selectedPlan" (change)="filterPlans()">
+        <option value="">All Plans</option>
+        <option *ngFor="let plan of allPlans" [value]="plan.planName">
+          {{ plan.planName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="inputDate" class="form-label">Date</label>
+      <div class="input-group">
+        <span class="input-group-text custom-icon">
+          <i class="bi bi-calendar3"></i>
+        </span>
+        <input type="date" id="inputDate" class="form-control custom-field" [(ngModel)]="selectedDate"
+          (change)="filterPlansByDate()" />
+      </div>
+    </div>
+    <div class="col-md-3 d-flex justify-content-start gap-4 mt-4">
+      <button class="btn btn-success" (click)="filterPlans()"
+        style="padding: 10px 20px; border-radius: 30px; font-size: 16px; width: 200px;">Search</button>
+      <button class="btn btn-secondary" (click)="clear()"
+        style="padding: 10px 20px; border-radius: 30px; font-size: 16px; width: 200px;">Clear</button>
+    </div>
+  </div>
+</div>
+
+<div class="plans-container">
+  <div class="add-plan-button-container">
+    <button mat-raised-button class="add-plan-button" (click)="addPlan()"> + Add new plan</button>
+  </div>
+  <mat-card *ngFor="let plan of filteredPlans; let i = index" class="plan-card">
+    <mat-card-content>
+      <div class="plan-details">
+        <p><strong>Location:</strong> {{ plan.location }}</p>
+        <p><strong>Plan Name:</strong> {{ plan.planName }}</p>
+        <p><strong>Price:</strong> {{ plan.price | currency:'$' }}</p> <!-- Update currency to INR -->
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-icon-button (click)="editPlan(plan)" class="edit-button">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deletePlan(plan.planId)" class="delete-button">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

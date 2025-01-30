@@ -1,0 +1,26 @@
+   /* Header and Footer Background */
+   .bg-custom-header {
+    background-color: #006400;
+  }
+
+  .bg-custom-footer {
+    background-color: #006400;
+  }
+
+  /* Text Colors */
+  .text-header-color {
+    color: #006400;
+  }
+
+.navbar-nav .nav-link.active {
+    border-bottom: 2px solid #006400;
+  }
+
+  .nav{
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

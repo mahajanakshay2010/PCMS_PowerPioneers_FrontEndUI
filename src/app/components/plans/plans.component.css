@@ -1,0 +1,113 @@
+.plans-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap onto the next line if necessary */
+  justify-content: flex-start; /* Aligns the cards to the start of the container */
+  gap: 1rem; /* Adds space between the cards */
+}
+.custom-spinner .mat-progress-spinner circle,
+.custom-spinner .mat-spinner circle {
+  stroke: #006400 !important; /* Change the spinner color to your desired color */
+}
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+.add-plan-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Aligns the button to the left */
+  margin-bottom: 1rem; /* Space below the button */
+  margin-top: 1rem;
+}
+
+.add-plan-button {
+  background-color: white; /* White background */
+  color: #4caf50; /* Green text */
+  border: 2px solid #4caf50; /* Green border */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  margin-left: 1rem; /* Left margin to position the button away from the edge */
+}
+
+.add-plan-button:hover {
+  background-color: #4caf50; /* Green background on hover */
+  color: white; /* White text on hover */
+}
+
+.plan-card {
+  width: 300px;
+  background-color: #e0f7e9; /* Light green color */
+  border: 1px solid #b2ebf2; /* Optional: add a border for better visibility */
+  /*border: 1px solid #ccc; /* Optional: Add a border for contrast */
+  padding: 16px; /* Optional: Add some padding */
+  margin-bottom: 1rem; /* Adds space between cards */
+}
+
+.plan-details p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Ensure the title color is green */
+.plan-card-title, .mat-card-title, h2, .mat-card-title h2 {
+  color: #4caf50; /* Green color for the title */
+  margin-bottom: 1rem; /* Space below the title */
+  font-size: 1.5rem; /* Adjusted font size for title */
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-button {
+  border: 2px solid #4caf50; /* Green border */
+  background-color: #e0f7e0; /* Light green background */
+  color: #4caf50; /* Green text color */
+  margin-left: 8px; /* Space between buttons */
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.edit-button:hover {
+  background-color: white; /* White background on hover */
+  color: #4caf50; /* Green text color */
+}
+
+.edit-button mat-icon {
+  color: #4caf50; /* Green icon color */
+}
+
+.edit-button:hover mat-icon {
+  color: #4caf50; /* Green icon color on hover */
+}
+
+.delete-button {
+  background-color: #4caf50;; /* White background */
+  color: white; /* Green text color */
+  margin-left: 8px; /* Space between buttons */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  border: 2px solid #4caf50;
+  
+}
+
+.delete-button:hover {
+  background-color: white ;/* Green background on hover */
+  color: #4caf50; /* White text color */
+  
+}
+
+.delete-button mat-icon {
+  color: white;/* Green icon color */
+  padding-bottom: 60px;
+}
+
+.delete-button:hover mat-icon {
+  color: #4caf50; /* White icon color on hover */
+}

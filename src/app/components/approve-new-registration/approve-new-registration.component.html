@@ -1,0 +1,128 @@
+<div class="container" *ngIf="!isLoading">
+  <br>
+  <br>
+  <div *ngIf="users.length === 0" class="text-center">
+    <p class="text-muted">No New Registrations</p>
+  </div>
+</div>
+
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="d-flex justify-content-end" style="padding-right: 60px;" *ngIf="users.length > 0">
+  <button class="btn approve-button me-5" (click)="openApproveAllDialog()">Approve all</button>
+  <button class="btn cancel-button" (click)="openRejectAllDialog()">Reject all</button>
+</div>
+
+<div *ngIf="users.length > 0" style="height: 1.5px; background-color:grey; margin: 20px 0;"></div> <!-- Thick colored line -->
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let user of users" class="col-12 col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm h-100 light-green-card"> <!-- Use the light-green-card class here -->
+        <div class="card-body">
+          <p><strong>Full Name:</strong> {{ user.name }}</p>
+          <p><strong>Mail Id:</strong> {{ user.email }}</p>
+          <p><strong>Mobile number:</strong> {{ user.phone }}</p>
+          <p><strong>Address:</strong> {{ user.address }}</p>
+          <!-- <p><strong>Zip code:</strong> {{ user.zip }}</p> -->
+          <br>
+          <div class="d-flex justify-content-between">
+            <button class="btn approve-button btn-sm" (click)="openApproveDialog(user.id, user.name)">Approve</button>
+            <button class="btn cancel-button btn-sm" (click)="openRejectDialog(user.id, user.name)">Reject</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approve All Confirmation Dialog Box -->
+<div *ngIf="showApproveAllDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Approve all
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Warning:</strong> Are you sure you want to approve all users?</p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="approve-button" (click)="confirmApproveAll()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeApproveAllDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- Reject All Confirmation Dialog Box -->
+<div *ngIf="showRejectAllDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Rejection Comments
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="textarea-container">
+        <textarea matInput placeholder="Comments" [(ngModel)]="rejectionComment"></textarea>
+        <button mat-icon-button class="close-btn" aria-label="Clear Comments" (click)="rejectionComment = ''">
+          <mat-icon><i class="fa-regular fa-circle-xmark"></i></mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="approve-button" (click)="confirmRejectAll()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeRejectAllDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- Approve Single User Confirmation Dialog Box -->
+<div *ngIf="showApproveDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Approve User
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Warning:</strong> Are you sure you want to approve <strong>{{ selectedUserName }}</strong>?</p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="approve-button btn-sm" (click)="confirmApprove()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeApproveDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- Reject Single User Confirmation Dialog Box -->
+<div *ngIf="showRejectDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Rejection Comment
+      </mat-card-title>
+      <mat-card-title>
+        {{ selectedUserName }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="textarea-container">
+        <textarea matInput placeholder="Comments" [(ngModel)]="rejectionComment"></textarea>
+        <button mat-icon-button class="close-btn" aria-label="Clear Comments" (click)="rejectionComment = ''">
+          <mat-icon><i class="fa-regular fa-circle-xmark"></i></mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="approve-button btn-sm" (click)="confirmReject()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeRejectDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

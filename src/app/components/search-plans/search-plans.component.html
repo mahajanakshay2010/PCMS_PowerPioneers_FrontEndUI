@@ -1,0 +1,348 @@
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner class="custom-spinner"></mat-spinner>
+</div>
+<div class="container mt-4"></div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="text-success">Search Plans</h2>
+  <div class="btn-group">
+    <button type="button" class="btn"
+      [ngClass]="{ 'btn-success': activeTab === 'new', 'btn-outline-success': activeTab !== 'new'}"
+      (click)="setActiveTab('new')">
+      <span *ngIf="activeTab === 'new'" class="tick-mark">&#10003;</span>
+      Search new plans
+    </button>
+    <button type="button" class="btn"
+      [ngClass]="{ 'btn-success': activeTab === 'existing', 'btn-outline-success': activeTab !== 'existing'}"
+      (click)="setActiveTab('existing')">
+      <span *ngIf="activeTab === 'existing'" class="tick-mark">&#10003;</span>
+      Search existing plans
+    </button>
+    <button type="button" class="btn"
+      [ngClass]="{ 'btn-success': activeTab === 'rejectedPlan', 'btn-outline-success': activeTab !== 'rejectedPlan'}"
+      (click)="setActiveTab('rejectedPlan')">
+      <span *ngIf="activeTab === 'rejectedPlan'" class="tick-mark">&#10003;</span>
+      Rejected Plans
+    </button>
+    <button type="button" class="btn"
+      [ngClass]="{ 'btn-success': activeTab === 'billHistory', 'btn-outline-success': activeTab !== 'billHistory'}"
+      (click)="setActiveTab('billHistory')">
+      <span *ngIf="activeTab === 'billHistory'" class="tick-mark">&#10003;</span>
+      My Bills
+    </button>
+  </div>
+</div>
+<div *ngIf="activeTab !== 'rejectedPlan' && activeTab !== 'billHistory'" class="container mt-4">
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-3">
+      <label for="inputSearch" class="form-label">Location</label>
+      <div class="input-group">
+        <span class="input-group-text custom-icon">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text" id="inputSearch" class="form-control input-lg custom-field" [(ngModel)]="searchText"
+          (input)="filterPlans()" placeholder="Search" />
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="selectPlan" class="form-label">Plan</label>
+      <select id="selectPlan" class="form-select" [(ngModel)]="selectedPlan" (change)="filterPlans()">
+        <option value="">All Plans</option>
+        <option *ngFor="let plan of (activeTab === 'new' ? plans : existingPlans)" [value]="plan.planName">
+          {{ plan.planName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="inputDate" class="form-label">Date</label>
+      <div class="input-group">
+        <span class="input-group-text custom-icon">
+          <i class="bi bi-calendar3"></i>
+        </span>
+        <input type="date" id="inputDate" class="form-control custom-field" [(ngModel)]="selectedDate"
+          (change)="filterPlansByDate()" />
+      </div>
+    </div>
+    <div class="col-md-3 d-flex justify-content-start gap-4 mt-4">
+      <button class="btn btn-success" (click)="filterPlans()"
+        style="padding: 10px 20px; border-radius: 30px; font-size: 16px; width: 200px;">Search</button>
+      <button class="btn btn-secondary" (click)="clear()"
+        style="padding: 10px 20px; border-radius: 30px; font-size: 16px; width: 200px;">Clear</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="activeTab === 'new'">
+  <div class="row">
+    <div *ngFor="let plan of filteredPlans" class="col-12 col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm h-100 light-green-card">
+        <div class="card-body">
+          <p>Location: {{ plan.location }}</p>
+          <p>Plan Name: {{ plan.planName }}</p>
+          <p>Price: ${{ plan.price }} <i class="fa fa-plus-circle"
+              style="font-size: 30px;color: #3cb371; cursor: pointer;padding-left: 230px;float: right;"
+              (click)="openDialog(plan)"></i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div *ngIf="activeTab === 'existing'">
+  <div>
+    <hr class="text-success">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="text-success">Existing Plans</h2>
+      <button *ngIf="existingPlans.length >= 0" class="btn btn-success" (click)="checkUsage()"
+        style="padding: 10px 20px; border-radius: 30px; font-size: 16px; width: 200px;">Visit Power Usage</button>
+    </div>
+ 
+    <!-- <app-usage-details></app-usage-details> -->
+    <br>
+    <div class="row">
+      <div *ngFor="let plan of filteredExistingPlans" class="col-12 col-md-6 col-lg-4 mb-3">
+        <div class="card shadow-sm h-100 light-green-card">
+          <div class="card-body">
+            <p>Location: {{ plan.location }}<span style="float: right;margin-right: 3px;"><button
+                  style="font-size: 12px;padding:9px;padding-top: 3px; padding-bottom:3px; color:#3cb371; border-color:#3cb371; cursor:  pointer;align-items: center; border-radius: 30px;"
+                  (click)="openUnsubscribeDialog(plan.planName)">Unsubscribe</button></span></p>
+            <p>Plan Name: {{ plan.planName }}</p>
+            <p>Price: ${{ plan.price }} <span style="float: right;"><button
+                  style="font-size: 12px;padding:9px;padding-top: 3px; padding-bottom:3px; color:#3cb371; border-color:#3cb371; cursor:  pointer;align-items: center; border-radius: 30px;"
+                  (click)="downloadBill(plan.planId)">View Bill</button></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div *ngIf="activeTab === 'rejectedPlan'">
+  <div class="container mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Plan Name</th>
+          <th>Location</th>
+          <th>Rejection Comment</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of rejectedPlans">
+          <td>{{ plan.planName }}</td>
+          <td>{{ plan.location }}</td>
+          <td>{{ plan.rejectionComment }}</td>
+          <td>
+            <i class="fa fa-trash" style="cursor: pointer; color: red;" (click)="deleteRejectedPlan(plan)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+ 
+ 
+ 
+<!-- Subscribe Plan Dialog Box -->
+<div *ngIf="showDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <div>
+      <h2>Subscribe new plan</h2>
+      <hr>
+      <div class="compact-para">
+        <p><strong>Location:</strong> {{ selectedPlanDetails?.location }}</p>
+        <p><strong>Plan Name:</strong> {{ selectedPlanDetails?.planName }}</p>
+        <p><strong>Price:</strong> ${{ selectedPlanDetails?.price }}</p>
+      </div>
+      <form [formGroup]="form" class="container">
+        <div class="row">
+          <div class="col-md-12 mb-3 form-group">
+            <label for="requiredFrom" class="form-label">Required From</label>
+            <input type="date" id="requiredFrom" class="form-control" formControlName="requiredFrom" [min]="minDate">
+            <div class="form-text text-danger"
+              *ngIf="form.get('requiredFrom')!.hasError('required') && form.get('requiredFrom')!.touched">
+              Required From is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3 form-group">
+            <label for="requiredTo" class="form-label">Required To</label>
+            <input type="date" id="requiredTo" class="form-control" formControlName="requiredTo"
+              [min]="minRequiredToDate">
+            <div class="form-text text-danger"
+              *ngIf="form.get('requiredTo')!.hasError('required') && form.get('requiredTo')!.touched">
+              Required To is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-check mb-3">
+          <input type="checkbox" id="autoTerminate" class="form-check-input" formControlName="autoTerminate">
+          <label for="autoTerminate" class="form-check-label">Auto Terminated</label>
+        </div>
+        <div class="form-check mb-3">
+          <input type="checkbox" id="alertRequired" class="form-check-input" formControlName="alertRequired">
+          <label for="alertRequired" class="form-check-label">Alert Required</label>
+        </div>
+      </form>
+      <button class="btn btn-success" style="float: left; border-radius: 20px;"
+        (click)="subscribePlan()">Subscribe</button>
+      <button class="btn btn-secondary" style="float: right; border-radius: 20px;"
+        (click)="closeDialog()">Cancel</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="showUnsubscribeDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        UnSubscribe Plan
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Warning:</strong> Are you sure you want to unsubscribe <strong>{{ unsubscribePlanName }}</strong>
+        plan?</p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="proceed-button" (click)="confirmUnsubscribe()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeUnsubscribeDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div *ngIf="activeTab === 'billHistory'">
+  <div class="container mt-4">
+    <br>
+    <button (click)="fetchMonthlyBills()" class="btn btn-primary mb-3">Download Bill</button>
+    <br>
+    <strong>Your bill for the current month will be generated on {{ nextStatementDate }}</strong>
+    <br>
+    <br>
+    <div class="mb-4">
+      <label for="monthSelect" class="form-label">Select Month</label>
+      <select id="monthSelect" class="form-select" (change)="onMonthChange($event)">
+        <option value="">Select a month</option>
+        <option *ngFor="let month of billHistory | keyvalue" [value]="month.key">{{ month.key }}</option>
+      </select>
+    </div>
+    <table *ngIf="selectedMonth" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Plan</th>
+          <th>Units Consumed</th>
+          <th>Price per Unit ($)</th>
+          <th>Total Cost ($)</th>
+          <!-- <th>Bill Date</th> -->
+          <!-- <th>Due Date</th> -->
+          <!-- <th>Response</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of billHistory[selectedMonth] | keyvalue">
+          <td>{{ selectedMonth }}</td>
+          <td>{{ plan.key }}</td>
+          <td>{{ getPlanFormGroup(plan.key).get('units_consumed')?.value }}</td>
+          <td>{{ getPlanFormGroup(plan.key).get('pricePerUnit')?.value }}</td>
+          <td>{{ getPlanFormGroup(plan.key).get('totalCost')?.value }}</td>
+          <!-- <td>{{ getPlanFormGroup(plan.key).get('billDate')?.value | date: 'yyyy-MM-dd' }}</td>
+          <!-- <td>{{ getPlanFormGroup(plan.key).get('dueDate')?.value | date: 'yyyy-MM-dd' }}</td>
+          <!-- <td>Bill generated successfully</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<style>
+  .dialog-overlay {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure it's on top */
+ 
+  }
+ 
+  .compact-para p {
+    margin: 2px 0;
+    padding: 0;
+  }
+ 
+  .dialog-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+  }
+ 
+  .warning-card {
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #ffffff;
+    font-family: "Arial", sans-serif;
+  }
+ 
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4caf50;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+ 
+  mat-card-content p {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+  }
+ 
+  .error-icon {
+    color: white;
+    background-color: #4caf50;
+    border-radius: 50%;
+    padding: 12px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ 
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 16px;
+  }
+ 
+  .proceed-button,
+  .cancel-button {
+    background-color: white;
+    color: #4caf50;
+    border: 2px solid #4caf50;
+    border-radius: 24px;
+    padding: 8px 24px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: capitalize;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+ 
+  .proceed-button:hover,
+  .cancel-button:hover {
+    background-color: #4caf50;
+    color: white;
+  }
+</style>

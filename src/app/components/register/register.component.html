@@ -1,0 +1,118 @@
+<div class="parent">
+  <div class="background">
+    <div class="form-container">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="registration-form">
+        <h2 class="text-center" style="color: #006400;">Registration Form</h2>
+        <hr />
+        <div class="form-columns">
+          <!-- First Column -->
+          <div class="form-column">
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Full Name</mat-label>
+              <input matInput placeholder=" " formControlName="fullName" required />
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': registerForm.get('fullName')?.hasError('required') && registerForm.get('fullName')?.touched}">
+                Enter your full name
+              </mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Mail Id</mat-label>
+              <input matInput type="email" placeholder=" " formControlName="mailId" required />
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': registerForm.get('mailId')?.hasError('required') && registerForm.get('mailId')?.touched}">
+                Enter a valid email
+              </mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Address Line 1</mat-label>
+              <input matInput placeholder=" " formControlName="addressLine1" required />
+              <mat-icon matSuffix>home</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': registerForm.get('addressLine1')?.hasError('required') && registerForm.get('addressLine1')?.touched}">
+                Enter your address
+              </mat-hint>
+            </mat-form-field>
+            
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Address Line 2</mat-label>
+              <input matInput placeholder=" " formControlName="addressLine2" required />
+              <mat-icon matSuffix>home</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': registerForm.get('addressLine2')?.hasError('required') && registerForm.get('addressLine2')?.touched}">
+                Enter your address
+              </mat-hint>
+            </mat-form-field>
+            
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Zip Code</mat-label>
+              <input matInput placeholder=" " formControlName="zipCode" required />
+              <mat-icon matSuffix>location_on</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': (registerForm.get('zipCode')?.hasError('required') || registerForm.get('zipCode')?.hasError('pattern')) && registerForm.get('zipCode')?.touched}">
+                Enter a valid 5-digit zip code
+              </mat-hint>
+            </mat-form-field>
+            
+          </div>
+  
+          <!-- Second Column -->
+          <div class="form-column">
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>SSN</mat-label>
+              <input matInput placeholder=" " formControlName="ssn" required />
+              <mat-icon matSuffix>security</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': (registerForm.get('ssn')?.hasError('required') || registerForm.get('ssn')?.hasError('pattern')) && registerForm.get('ssn')?.touched}">
+                Enter a valid SSN in the format xxx-xx-xxxx
+              </mat-hint>
+            </mat-form-field>
+            
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder=" " formControlName="phoneNumber" required />
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': (registerForm.get('phoneNumber')?.hasError('required') || registerForm.get('phoneNumber')?.hasError('pattern')) && registerForm.get('phoneNumber')?.touched}">
+                Enter a valid phone number in the format xxx-xxx-xxxx
+              </mat-hint>
+            </mat-form-field>
+            
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder=" " formControlName="password" required />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': (registerForm.get('password')?.hasError('minlength') || registerForm.get('password')?.hasError('maxlength') || registerForm.get('password')?.hasError('required')) && registerForm.get('password')?.touched}">
+                Password should be between 6 and 15 characters
+              </mat-hint>
+            </mat-form-field>
+            
+  
+            <mat-form-field class="gap" appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" placeholder=" " formControlName="confirmPassword" required />
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint class="left-align" [ngClass]="{'text-danger': (registerForm.get('confirmPassword')?.hasError('minlength') || registerForm.get('confirmPassword')?.hasError('maxlength') || registerForm.get('confirmPassword')?.hasError('required') || registerForm.get('confirmPassword')?.hasError('matchPassword')) && registerForm.get('confirmPassword')?.touched}">
+                Confirm password should match the password
+              </mat-hint>
+            </mat-form-field>
+            
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-lg btn-success">Sign up</button>
+              <button type="reset" class="btn btn-lg btn-outline-success">Reset</button>
+            </div>
+            <div class="m3">
+              Already a member? <a routerLink="/login" style="padding-left: 5px;">Login</a>
+            </div>
+          </div>
+          
+        </div>
+  
+        
+      </form>
+    </div>
+  </div>
+</div>
+<div>
+  <br>
+  <br>
+</div>

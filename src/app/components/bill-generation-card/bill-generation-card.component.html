@@ -1,0 +1,23 @@
+<mat-card class="bill-card">
+  <mat-card-header>
+    <mat-card-title>View Bill</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="bill-details">
+      
+      <!-- <p><strong>Userplan ID:</strong> {{ billForm.get('userplanid')?.value }}</p> -->
+      <p><strong>Units Consumed:</strong> {{ billForm.get('quantity')?.value }}</p>
+      <p><strong>Cost per Unit:</strong> {{ billForm.get('planPrice')?.value | currency:'$' }}</p>
+      <p><strong>Total: </strong> {{ billForm.get('totalPrice')?.value | currency:'$' }}</p>
+      <!-- <p><strong>Due Date:</strong> {{ billForm.get('dueDate')?.value }}</p> -->
+      <br>
+      <b>Current month bill till today</b>
+      
+      
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button class="download-button" (click)="onDownload()">Download Bill</button>
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancel</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,44 @@
+<div class="background">
+  <div class="center-container">
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="container">
+        <h2 class="text-center" style="color: #006400;">Login Form</h2>
+        <hr />
+
+        <!-- Email ID -->
+        <div class="row">
+          <mat-form-field class="gap" appearance="outline">
+            <mat-label>Email ID</mat-label>
+            <input matInput type="email" placeholder=" " formControlName="mailId" required />
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint [ngClass]="{'text-danger': loginform.get('mailId')?.hasError('required') && loginform.get('mailId')?.touched}">
+              Enter a valid email ID.
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Password -->
+        <div class="row">
+          <mat-form-field class="gap" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="showPassword ? 'text' : 'password'" placeholder=" " formControlName="password" required />
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-hint [ngClass]="{'text-danger': (loginform.get('password')?.hasError('minlength') || loginform.get('password')?.hasError('maxlength') || loginform.get('password')?.hasError('required')) && loginform.get('password')?.touched}">
+              Enter a valid password between 6 and 15 characters.
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Buttons -->
+        <div class="row">
+          <div class="col-md-12 mb-3 form-group d-flex justify-content-between">
+            <button type="submit" class="btn btn-lg btn-success">Login</button>
+          </div>
+        </div>
+        <div class="m3">
+          Not a member? <a routerLink="/register" style="padding-left: 5px;">Register</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

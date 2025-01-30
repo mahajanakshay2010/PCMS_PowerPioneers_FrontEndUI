@@ -1,0 +1,165 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Ensure it appears above other content */
+}
+
+.card-body {
+  text-align: center;
+}
+
+.text-success {
+  padding-left: 50px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.btn-group .btn {
+  border-radius: 0 !important;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+
+.btn-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+  border-color: #4caf50 !important;
+}
+
+.btn-outline-success {
+  color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+
+.btn-outline-success:hover {
+  background-color: #109a10 !important;
+  color: white !important;
+}
+
+.btn-group {
+  padding-right: 570px;
+}
+
+.tick-mark {
+  margin-right: 8px;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-group .btn .tick-mark {
+  color: #fff;
+}
+
+.custom-field {
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.custom-field:focus {
+  border-color: #6a0dad;
+  box-shadow: 0 0 5px rgba(106, 13, 173, 0.5);
+  outline: none;
+}
+
+.custom-icon {
+  background-color: #f8f9fa;
+  border: 2px solid #ddd;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: #6c757d;
+}
+
+.custom-icon i {
+  font-size: 18px;
+  color: #28a745;
+}
+
+.custom-icon:hover {
+  color: #6a0dad;
+}
+
+.input-group .custom-field {
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+}
+
+.light-green-card {
+  background-color: #e0f7e9;
+  /* Light green color */
+  border: 1px solid #b2ebf2;
+  /* Optional: add a border for better visibility */
+}
+
+.row {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.card-body p {
+  text-align: left;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.align {
+  margin-left: 1000px;
+  margin-bottom: 10px;
+}
+
+.proceed-button {
+  background-color: #4caf50 !important;
+  color: white !important;
+  border: 2px solid #4caf50 !important;
+  border-radius: 24px;
+  padding: 8px 24px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.existing {
+  margin-bottom: 2000px;
+}
+
+
+/*.rounded-circle:hover{
+    background-color: #28a745;
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+  }
+
+  .rounded-circle:hover i{
+    color: white;
+  }*/

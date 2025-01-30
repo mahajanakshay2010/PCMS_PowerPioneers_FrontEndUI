@@ -1,0 +1,17 @@
+.bg-custom-footer {
+    background-color: #006400;
+  }
+
+  .text-white {
+    color: #FFFFFF;
+  }
+  p{
+    padding-right: 9%;
+  }
+
+  footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }

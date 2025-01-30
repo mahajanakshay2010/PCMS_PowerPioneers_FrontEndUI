@@ -1,0 +1,29 @@
+<header class="bg-custom-header p-1 d-flex justify-content-between align-items-center">
+  <h1 class="text-center text-header-color">Power Consumer Management System</h1>
+  <div class="profile-icon position-relative" *ngIf="showProfileIcon">
+    <i class="fa-solid fa-user-circle fa-3x text-header-color" (click)="toggleDropdown()"></i>
+    <div class="dropdown-menu" *ngIf="dropdownVisible">
+      <div class="user-name">{{ userName }}</div>
+      <button class="logout-button" (click)="openLogoutDialog()">Logout</button>
+    </div>
+  </div>
+</header>
+
+<!-- Logout Confirmation Dialog Box -->
+<div *ngIf="showLogoutDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Log Out
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Warning:</strong> Are you sure you want to logout?</p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="approve-button btn-sm" (click)="confirmLogout()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeLogoutDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

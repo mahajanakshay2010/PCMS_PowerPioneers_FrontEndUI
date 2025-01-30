@@ -1,0 +1,90 @@
+<div class="container">
+  <br>
+  <br>
+  <div class="spinner-container" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!isLoading">
+    <br>
+    <br>
+    <div *ngIf="plans.length === 0" class="text-center">
+      <p class="text-muted">No New Plans</p>
+    </div>
+  </div>
+
+  <div *ngIf="plans.length > 0" class="row">
+    <div *ngFor="let plan of plans" class="col-12 col-md-6 col-lg-4 mb-3">
+      <div class="card shadow-sm h-100 light-green-card">
+        <div class="card-body">
+          <p><strong>Location:</strong> {{ plan.location }}</p>
+          <p><strong>Plan name:</strong> {{ plan.name }}</p>
+          <p><strong>Price:</strong> ${{ plan.price }}</p>
+          <p><strong>Requested by:</strong> {{ plan.requestedBy }}</p>
+          <p><strong>Required from:</strong> {{ plan.requiredFrom }}</p>
+          <p><strong>Required upto:</strong> {{ plan.requiredUpto }}</p>
+          <br>
+          <!-- Uncomment the following lines if you want to display these details -->
+          <!-- <p><strong>Auto Terminated:</strong> {{ plan.autoTerminated }}</p>
+          <p><strong>Status:</strong> {{ plan.status }}</p>
+          <p><strong>Rejection Comment:</strong> {{ plan.rejectionComment }}</p>
+          <p><strong>Subscribed:</strong> {{ plan.subscribed }}</p>
+          <p><strong>Alert Required:</strong> {{ plan.alertRequired }}</p> -->
+          <div class="d-flex justify-content-between">
+            <button class="btn approve-button btn-sm"
+              (click)="openApproveDialog(plan.id, plan.name, plan.requestedBy)">Approve</button>
+            <button class="cancel-button"
+              (click)="openRejectDialog(plan.id, plan.name, plan.requestedBy)">Reject</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approve Single Plan Confirmation Dialog Box -->
+<div *ngIf="showApproveDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Approve Plan
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Warning:</strong> Are you sure you want to approve <strong>{{ selectedPlanName }}</strong> requested by
+        <strong>{{ selectedRequestedBy }}</strong>? Click 'Proceed' to confirm or 'Cancel' to go back.</p>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="btn approve-button btn-sm" (click)="confirmApprove()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeApproveDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- Reject Single Plan Confirmation Dialog Box -->
+<div *ngIf="showRejectDialog" class="dialog-overlay">
+  <mat-card class="warning-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        Rejection Comment 
+      </mat-card-title>
+      <mat-card-title>
+        {{ selectedPlanName }}
+      </mat-card-title>
+      
+    </mat-card-header>
+    <mat-card-content>
+      <div class="textarea-container">
+        <textarea matInput placeholder="Comments" [(ngModel)]="rejectionComment"></textarea>
+        <button mat-icon-button class="close-btn" aria-label="Clear Comments" (click)="rejectionComment = ''">
+          <mat-icon><i class="fa-regular fa-circle-xmark"></i></mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-buttons">
+      <button mat-button class="btn approve-button btn-sm" (click)="confirmReject()">Proceed</button>
+      <button mat-button class="cancel-button" (click)="closeRejectDialog()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

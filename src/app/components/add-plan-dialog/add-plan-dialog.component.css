@@ -1,0 +1,111 @@
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.plan-card {
+  width: 300px;
+  background-color: white; /* White background for the card */
+  border: 2px solid black; /* Black border */
+  padding: 20px;
+}
+
+mat-card-title, h2[mat-dialog-title] {
+  color: #4caf50; /* Green color for the title */
+  margin-bottom: 10px;
+  font-size: 1.5rem; /* Adjusted font size for title */
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensure buttons span the full width of the card */
+}
+
+.add-button, .cancel-button {
+  background-color: white; /* Ensure background is white initially */
+  color: #4caf50; /* Green text color */
+  border: 2px solid #a5d6a7; /* Light green border */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  width: 35%; /* Adjust the width to make them fit in the bottom corners */
+}
+
+.add-button:hover, .cancel-button:hover {
+  background-color: #4caf50; /* Green background on hover */
+  color: white; /* White text on hover */
+}
+
+.add-button:active, .cancel-button:active {
+  background-color: #45a049; /* Darker green background on active state */
+  color: white; /* White text on active state */
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 18px 10px 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #6a1b9a; /* Purple border on focus */
+  box-shadow: 0 0 5px rgba(106, 27, 154, 0.3); /* Purple shadow on focus */
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  color: #060606;
+  font-size: 10px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 10px;
+  color: #6a1b9a;
+  background-color: white;
+}
+
+.clear-button {
+  position: absolute;
+  right: 20px;
+  color: black;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid #0c0b0b;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.clear-button:hover {
+  background-color: #f5f5f5;
+}

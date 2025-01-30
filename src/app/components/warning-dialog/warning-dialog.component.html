@@ -1,0 +1,15 @@
+<mat-card class="warning-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="error-icon">error_outline</mat-icon>
+      Delete Plan
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Warning:</strong> You are deleting the plan which is already added. Have you verified the impact and wish to proceed?</p>
+  </mat-card-content>
+  <mat-card-actions class="action-buttons">
+    <button mat-button class="proceed-button" (click)="onProceed()">Proceed</button>
+    <button mat-button class="cancel-button" (click)="onCancel()">Cancel</button>
+  </mat-card-actions>
+</mat-card>
